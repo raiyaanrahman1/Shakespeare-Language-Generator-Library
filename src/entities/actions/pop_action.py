@@ -11,11 +11,11 @@ class PopAction(Action):
         yourself = 'yourself' if you_or_thou == 'you' else 'thyself'
         
         positive_phrases = [
-            f"Recall {your} beauty, my fine friend",
+            f"Recall {your} beauty, my love",
             f"Recall {your} good fortune",
             f"Recall {your} generosity, {your} highness",
-            f"Recall {your} courage, brave knight"
-            f"Recall {your} kindness, my good friend"
+            f"Recall {your} courage, brave knight",
+            f"Recall {your} kindness, my good friend",
         ]
 
         neutral_phrases = [
@@ -26,12 +26,12 @@ class PopAction(Action):
             f"Recall {your} idiocy, you half-witted hamster",
             f"Recall {your} greed, you filthy pig",
             f"Recall {your} sins and repent to God, you cursed rat",
-            f"Recall {yourself} you miserable, fatherless, fat-kidneyed imbocile"
-            f"Recall {yourself} you lousy human-being"
-            f"Recall {your} theivery you lying, evil cockroach"
-            f"Recall {your} cowardice, you fat, foul, fatherless bastard"
+            f"Recall {yourself} you miserable, fatherless, fat-kidneyed imbocile",
+            f"Recall {yourself} you lousy human-being",
+            f"Recall {your} theivery you lying, evil cockroach",
+            f"Recall {your} cowardice, you fat, foul, fatherless bastard",
             f"Recall {your} adultery, you horrible devil",
-            f"Recall {yourself} you stupid, horrid peasant"
+            f"Recall {yourself} you stupid, horrid peasant",
         ]
 
         phrases = {
