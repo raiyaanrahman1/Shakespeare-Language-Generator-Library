@@ -31,7 +31,7 @@ class NumberBuilder:
         numbers = [self.build_power_of_two(2**i, self.tone) for i, bit in enumerate(binary[::-1]) if int(bit) == 1]
 
         if len(numbers) == 1:
-            return numbers[0]
+            return self.correct_sign_of_expr(numbers[0])
 
         extra_expr = None
         exprs = copy(numbers)
@@ -51,13 +51,16 @@ class NumberBuilder:
         
         expr = exprs[0]
 
+        return self.correct_sign_of_expr(expr)
+
+    def correct_sign_of_expr(self, expr):
         if (
             self.tone == 'negative' and self.number_to_build > 0
             or self.tone in ('positive', 'neutral') and self.number_to_build < 0
         ):
-            expr = ProductExpression(expr, self.build_power_of_two(1, 'negative'))
-
-        return expr
+            return ProductExpression(expr, self.build_power_of_two(1, 'negative'))
+        else:
+            return expr
 
     def build_power_of_two(self, num, tone):
         phrase_noun = random.choice(nouns[tone])
