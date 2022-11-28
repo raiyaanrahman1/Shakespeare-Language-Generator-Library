@@ -26,35 +26,36 @@ class NumberBuilder:
         if self.number_to_build == 0:
             return Number(self.number_to_build, [], None)
 
-        binary = bin(self.number_to_build)[2:]
+        binary = bin(abs(self.number_to_build))[2:]
         
         numbers = [self.build_power_of_two(2**i, self.tone) for i, bit in enumerate(binary[::-1]) if int(bit) == 1]
 
         if len(numbers) == 1:
             return numbers[0]
 
-        sum_exprs = []
+        extra_expr = None
+        exprs = copy(numbers)
+
+        while len(exprs) > 1 or extra_expr is not None:
+            temp_exprs = []
+            for i in range(0, len(exprs), 2):
+                if i == len(exprs) - 1:
+                    if extra_expr is None:
+                        extra_expr = exprs[i]
+                    else:
+                        temp_exprs.append(SumExpression(extra_expr, exprs[i]))
+                        extra_expr = None
+                else:
+                    temp_exprs.append(SumExpression(exprs[i], exprs[i + 1]))
+            exprs = temp_exprs
         
-        extra_num = None
-        for i in range(0, len(numbers), 2):
-            if i == len(numbers) - 1:
-                extra_num = numbers[i]
-            else:
-                sum_exprs.append(SumExpression(numbers[i], numbers[i + 1]))
+        expr = exprs[0]
 
-        while len(sum_exprs) > 1:
-            temp = []
-            for i in range(0, len(sum_exprs), 2):
-                temp.append(SumExpression(sum_exprs[i], sum_exprs[i + 1]))
-            sum_exprs = temp
-
-        if extra_num is not None:
-            expr = SumExpression(sum_exprs[0], extra_num)
-        else:
-            expr = sum_exprs[0]
-
-        if self.tone == 'negative':
-            expr = ProductExpression(expr, self.build_power_of_two(1, self.tone))
+        if (
+            self.tone == 'negative' and self.number_to_build > 0
+            or self.tone in ('positive', 'neutral') and self.number_to_build < 0
+        ):
+            expr = ProductExpression(expr, self.build_power_of_two(1, 'negative'))
 
         return expr
 
