@@ -1,3 +1,3 @@
-click==8.1.3
-grako==3.99.9
-shakespearelang==0.3.1
+click==7.1.2
+shakespearelang==1.0.0rc1
+TatSu==5.6.1
