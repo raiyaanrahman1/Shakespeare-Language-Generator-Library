@@ -27,8 +27,9 @@ class PhraseGenScene(Scene):
                 you_or_thou = random.choice(['you', 'thou'])
                 punctuation = random.choice(['.', '!'])
                 pop_action = PopAction(you_or_thou, self.tone, punctuation)
+                you_or_thou = random.choice(['you', 'thou'])
                 punctuation = random.choice(['.', '!'])
-                print_action = StringOutputAction(punctuation)
+                print_action = StringOutputAction(you_or_thou, punctuation)
                 lines.append(Line(self.characters[0], [pop_action, print_action]))
 
         return lines
