@@ -4,4 +4,4 @@ class Line:
         self.actions = actions
 
     def __str__(self) -> str:
-        return f'{self.character}:\n' + ''.join([('\t' + str(action) + '\n') for action in self.actions])
+        return f'{str(self.character)}:\n' + ''.join([('\t' + str(action) + '\n') for action in self.actions])

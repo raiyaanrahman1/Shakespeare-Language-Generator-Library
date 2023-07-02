@@ -3,6 +3,7 @@ from src.entities.actions.assignment_action import AssignmentAction
 from src.entities.scenes.phrase_gen_scene import PhraseGenScene
 from src.entities.expressions.sum_expression import SumExpression
 from src.entities.number import Number
+from src.entities.character import Character
 from pprint import pprint
 
 
@@ -16,7 +17,8 @@ from pprint import pprint
 # action = AssignmentAction(SumExpression(SumExpression(Number(1, [], 'pig'), Number(1, [], 'pig')), Number(1, [], 'pig')))
 # print(str(action))
 
-lines = PhraseGenScene(['Romeo', 'Juliet'], 'positive', 'Romeo, O Romeo, where art thou?').generate_phrase()
+characters = [Character('Romeo'), Character('Juliet')]
+lines = PhraseGenScene(characters, 'positive', 'Romeo, O Romeo, where art thou?').generate_phrase()
 
 for line in lines:
     print(str(line))
